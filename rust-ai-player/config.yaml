@@ -1,0 +1,99 @@
+# Rust AI Player Configuration
+
+# Display Settings
+monitor: 1  # Which monitor to use (1 = primary)
+window_x: 0
+window_y: 0
+window_width: 1920
+window_height: 1080
+
+# Vision Settings
+model_path: null  # Path to custom YOLO model (null = use default YOLOv8n)
+confidence_threshold: 0.5  # Minimum confidence for object detection (0.0 - 1.0)
+
+# Control Settings
+key_delay: 0.05  # Delay between key presses (seconds)
+mouse_sensitivity: 1.0  # Mouse sensitivity multiplier
+
+# Performance Settings
+target_fps: 10  # Target frames per second for AI processing
+debug_mode: false  # Enable debug visualization
+
+# AI Behavior Settings
+decision_engine:
+  critical_health_threshold: 20
+  low_health_threshold: 50
+  critical_hunger_threshold: 30
+  flee_distance: 50  # Minimum distance to flee from threats
+
+# Game-Specific Settings
+game:
+  # Hotbar mappings
+  hotbar:
+    weapon_slot: 1
+    tool_slot: 2
+    bandage_slot: 3
+    food_slot: 4
+
+  # Keybindings (in case they differ from defaults)
+  keys:
+    forward: 'w'
+    backward: 's'
+    left: 'a'
+    right: 'd'
+    jump: 'space'
+    crouch: 'ctrl'
+    sprint: 'shift'
+    interact: 'e'
+    reload: 'r'
+    inventory: 'tab'
+    map: 'g'
+    voice_chat: 'v'
+
+  # Resource priorities (higher = more important)
+  resource_priorities:
+    ore: 5
+    stone: 4
+    tree: 3
+    hemp: 2
+    crate: 4
+
+  # Threat levels (0.0 - 1.0)
+  threat_levels:
+    player: 0.9
+    bear: 0.95
+    wolf: 0.7
+    scientist: 0.85
+    boar: 0.3
+
+# Voice Chat Settings (Phase 2)
+voice:
+  enabled: false
+  tts_engine: "pyttsx3"  # Options: pyttsx3, elevenlabs, openai
+  tts_voice: null  # Voice selection (null = default)
+  tts_rate: 150  # Speech rate (words per minute)
+
+  # ElevenLabs settings (if using)
+  elevenlabs:
+    api_key: null
+    voice_id: null
+
+  # OpenAI settings (if using)
+  openai:
+    api_key: null
+    model: "tts-1"
+    voice: "alloy"
+
+# Training Settings
+training:
+  enabled: false
+  dataset_path: null
+  epochs: 100
+  batch_size: 16
+  image_size: 640
+
+# Logging
+logging:
+  enabled: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "logs/rust_ai.log"
