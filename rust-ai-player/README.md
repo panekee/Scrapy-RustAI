@@ -42,6 +42,7 @@ rust-ai-player/
 
 ### Prerequisites
 - Python 3.8 or higher
+- pip (latest version recommended: `python -m pip install --upgrade pip`)
 - CUDA-capable GPU (recommended for better performance)
 - Windows/Linux operating system
 
@@ -64,14 +65,49 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. Install dependencies:
+3. **Upgrade pip** (important for avoiding build issues):
+```bash
+python -m pip install --upgrade pip setuptools wheel
+```
+
+4. Install **core dependencies** (required):
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Download YOLOv8 model (happens automatically on first run):
+This installs the essential packages needed for basic functionality:
+- opencv-python (computer vision)
+- pynput (input control)
+- mss (screen capture)
+- ultralytics (YOLOv8, includes PyTorch)
+- numpy, pyyaml, Pillow
+
+5. Install **optional dependencies** (for voice chat and advanced features):
+```bash
+pip install -r requirements-optional.txt
+```
+
+6. Install **development tools** (if contributing):
+```bash
+pip install -r requirements-dev.txt
+```
+
+7. YOLOv8 model download (happens automatically on first run):
 ```bash
 python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
+```
+
+### Quick Start (Minimal Installation)
+
+If you just want to test the core functionality:
+
+```bash
+# Install only what's needed
+pip install opencv-python pynput mss ultralytics pyyaml Pillow
+
+# Run the AI
+cd src
+python main.py
 ```
 
 ## Configuration
@@ -285,23 +321,60 @@ This project is for educational and research purposes. Please note:
 
 **"Module not found" errors**:
 ```bash
+# Upgrade pip first
+python -m pip install --upgrade pip setuptools wheel
+
+# Then reinstall
 pip install -r requirements.txt
 ```
 
+**Installation fails on scikit-image, pyaudio, or other packages**:
+
+The new requirements.txt only includes core dependencies. The problematic packages have been moved to optional files:
+
+```bash
+# Core installation (should work without issues)
+pip install -r requirements.txt
+
+# Only install optional if you need voice chat
+pip install -r requirements-optional.txt
+```
+
+For voice chat features on Windows:
+```bash
+# Install pyaudio using pipwin (easier on Windows)
+pip install pipwin
+pipwin install pyaudio
+```
+
+**Windows: Microsoft Visual C++ errors during installation**:
+- Install Microsoft C++ Build Tools from: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+- Or use pre-built wheels: `pip install --only-binary :all: package-name`
+
 **Screen capture not working**:
-- Check monitor number in config
+- Check monitor number in config (1 = primary monitor)
 - Verify screen coordinates
-- Run with administrator privileges (Windows)
+- Run with administrator privileges (Windows):
+  - Right-click Command Prompt → "Run as administrator"
+  - Then activate venv and run the program
+- On Windows, ensure Windows Display settings show correct resolution
 
 **Low FPS**:
-- Reduce target_fps
-- Use smaller YOLO model
-- Lower screen resolution
+- Reduce target_fps in config.yaml
+- Use smaller YOLO model (yolov8n is smallest)
+- Lower window_width and window_height
+- Close other applications using GPU/CPU
 
 **Detection not working**:
-- Adjust confidence_threshold
-- Check if game window is visible
-- Train custom model for Rust objects
+- Adjust confidence_threshold (lower = more detections)
+- Check if game window is visible and not minimized
+- Verify window coordinates in config.yaml match your game window
+- Train custom model for Rust-specific objects
+
+**torch/CUDA issues**:
+- For CPU-only: `pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu`
+- For CUDA: Check CUDA version and install matching torch version
+- Ultralytics will auto-install compatible torch if not present
 
 ## Contributing
 

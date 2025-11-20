@@ -1,39 +1,13 @@
-# Core dependencies
+# Core dependencies - Essential for basic functionality
 opencv-python>=4.8.0
 pynput>=1.7.6
 mss>=9.0.1
 ultralytics>=8.0.0
 numpy>=1.24.0
 pyyaml>=6.0
-
-# Additional ML/AI libraries
-torch>=2.0.0
-torchvision>=0.15.0
-
-# Phase 2: Voice chat dependencies
-pyttsx3>=2.90
-SpeechRecognition>=3.10.0
-pyaudio>=0.2.13
-
-# Optional: Advanced TTS services
-# elevenlabs>=0.2.0
-# openai>=1.0.0
-
-# Development and testing
-pytest>=7.4.0
-pytest-cov>=4.1.0
-black>=23.0.0
-flake8>=6.1.0
-
-# Logging and monitoring
-loguru>=0.7.0
-
-# Image processing
 Pillow>=10.0.0
-scikit-image>=0.21.0
 
-# Data handling
-pandas>=2.0.0
-
-# Optional: GPU acceleration
-# onnxruntime-gpu>=1.15.0
+# Note: ultralytics will automatically install torch/torchvision as dependencies
+# For additional optional features, see:
+# - requirements-optional.txt (voice chat, advanced features)
+# - requirements-dev.txt (development and testing tools)
