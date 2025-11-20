@@ -1,0 +1,23 @@
+# Optional features for Phase 2 and advanced functionality
+
+# Phase 2: Voice chat dependencies
+# Note: These may require system-level audio libraries
+# On Ubuntu/Debian: sudo apt-get install portaudio19-dev python3-pyaudio
+# On Windows: pip install pipwin && pipwin install pyaudio
+pyttsx3>=2.90
+SpeechRecognition>=3.10.0
+# pyaudio>=0.2.13  # Uncomment if needed, requires system dependencies
+
+# Advanced TTS services (require API keys)
+# elevenlabs>=0.2.0
+# openai>=1.0.0
+
+# Advanced image processing (requires compilation)
+# scikit-image>=0.21.0
+
+# Data analysis and logging
+pandas>=2.0.0
+loguru>=0.7.0
+
+# GPU acceleration (if you have CUDA)
+# onnxruntime-gpu>=1.15.0
